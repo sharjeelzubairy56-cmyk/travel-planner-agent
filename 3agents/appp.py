@@ -19,9 +19,14 @@ st.title("✈️ Intelligent Travel & Cultural Planner")
 st.caption("Powered by 3 Autonomous LangChain Agents, Groq LLM & Weather API")
 
 # -----------------------------------------------------------------------------
-# 2. API KEYS (Pulled safely from Streamlit Secrets)
+# 2. API KEYS
 # -----------------------------------------------------------------------------
-groq_api_key = st.secrets["GROQ_API_KEY"]
+# Groq API key is now entered by the user in the sidebar
+st.sidebar.header("🔑 API Credentials")
+groq_api_key = st.sidebar.text_input("Groq API Key", type="password")
+st.sidebar.markdown("---")
+
+# Weather API key remains safely pulled from Streamlit Secrets
 weather_api_key = st.secrets["WEATHER_API_KEY"]
 
 # -----------------------------------------------------------------------------
@@ -84,8 +89,8 @@ plan_button = st.button("🚀 Generate Travel Plan", use_container_width=True)
 # 6. Agent Workflow Execution
 # -----------------------------------------------------------------------------
 if plan_button:
-    if not groq_api_key or groq_api_key == "YOUR_GROQ_API_KEY_HERE":
-        st.error("⚠️ Error: Groq API Key is missing from your deployment secrets!")
+    if not groq_api_key:
+        st.error("⚠️ Please enter your Groq API Key in the sidebar to proceed.")
     elif not user_prompt.strip():
         st.warning("Please enter a prompt before proceeding.")
     else:
