@@ -12,23 +12,21 @@ from langchain_core.output_parsers import StrOutputParser
 st.set_page_config(
     page_title="Intelligent Travel Planner",
     page_icon="✈️",
-    layout="wide" # Set back to wide to beautifully accommodate the sidebar
+    layout="wide" 
 )
 
 st.title("✈️ Intelligent Travel & Cultural Planner")
 st.caption("Powered by 3 Autonomous LangChain Agents, Groq LLM & Weather API")
 
 # -----------------------------------------------------------------------------
-# 2. HARDCODED API KEYS (DEVELOPER ONLY)
+# 2. API KEYS (Pulled safely from Streamlit Secrets)
 # -----------------------------------------------------------------------------
-# Replace the text inside the quotes with your actual API keys!
 groq_api_key = st.secrets["GROQ_API_KEY"]
 weather_api_key = st.secrets["WEATHER_API_KEY"]
 
 # -----------------------------------------------------------------------------
 # 3. Sidebar (Collapsible Left Menu)
 # -----------------------------------------------------------------------------
-# Streamlit automatically adds a close/open toggle button at the top left of sidebars
 st.sidebar.markdown("### 🧠 Agent Architecture")
 st.sidebar.markdown("""
 Behind the scenes, 3 specialized AI agents work together to plan your trip:
@@ -86,8 +84,8 @@ plan_button = st.button("🚀 Generate Travel Plan", use_container_width=True)
 # 6. Agent Workflow Execution
 # -----------------------------------------------------------------------------
 if plan_button:
-    if groq_api_key == "YOUR_GROQ_API_KEY_HERE":
-        st.error("⚠️ Developer: You forgot to put your actual Groq API Key in the code (Line 22)!")
+    if not groq_api_key or groq_api_key == "YOUR_GROQ_API_KEY_HERE":
+        st.error("⚠️ Error: Groq API Key is missing from your deployment secrets!")
     elif not user_prompt.strip():
         st.warning("Please enter a prompt before proceeding.")
     else:
