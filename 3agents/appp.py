@@ -211,12 +211,13 @@ if plan_button:
                     --- AGENT 2 (CULTURAL & ROUTE FINDINGS) ---
                     {cultural_info}
 
-                    --- STRICT RULES FOR ROUTING & DISTANCE ---
+                    --- STRICT RULES FOR ROUTING & FORMATTING ---
                     1. **NO EXACT DISTANCES**: NEVER state exact distances, kilometers (km), or miles anywhere in the response.
                     2. **Handling Origins**: 
                        - If the Origin is NOT "Not Specified", describe the travel between the origin and destination using estimated driving/transit duration in hours and recommended routes/highways.
                        - If the Origin IS "Not Specified", completely skip inter-city travel logistics and focus solely on the destination's daily itinerary, local transit, and experiences.
                     3. **Budget**: Provide practical cost estimates (meals, activities, local transit) without referencing exact kilometer calculations.
+                    4. **NO HTML TAGS**: NEVER use `<br>` or any other HTML tags in your output. If you create tables, separate list items using commas or semicolons. If you need multi-line breakdowns, use standard Markdown bulleted lists outside of tables instead of forcing them into table cells.
 
                     --- REQUIRED OUTPUT FORMAT ---
                     Format your response in clean Markdown using the following exact headers:
